@@ -23,6 +23,12 @@ jobs:
       
     - name: Pull image and run code scan
       run: |
+        echo "🔍 Checking for prerequisite parameters..."
+        if [[ -z "$DUMMY CHECK" && -z "$TOKEN" ]]; then
+        echo "⚠️ Required secrets not configured. Skipping scan."
+        exit 0
+        fi
+        
         IMAGE_NAME="${{ vars.IMAGE_DIST }}.traps.paloaltonetworks.com/cli-docker/${TOKEN}/method:amd64-latest"
 
         docker pull ${IMAGE_NAME}
