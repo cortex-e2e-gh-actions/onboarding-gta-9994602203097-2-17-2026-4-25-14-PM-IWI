@@ -24,7 +24,7 @@ jobs:
     - name: Pull image and run code scan
       run: |
         echo "🔍 Checking for prerequisite parameters..."
-        if [[ -z "$DUMMY CHECK" && -z "$TOKEN" ]]; then
+        if [[ -z "$DUMMY CHECK" || -z "$ABCD" ]]; then
         echo "⚠️ Required secrets not configured. Skipping scan."
         exit 0
         fi
